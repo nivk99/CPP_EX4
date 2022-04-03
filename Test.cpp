@@ -27,8 +27,8 @@ using namespace zich;
 
 
 /**
- * @brief
- * @param input
+ * @brief Deletes special characters
+ * @param input - String to delete special characters
  * @return string
  */
 string nospaces(string input) noexcept(true)
