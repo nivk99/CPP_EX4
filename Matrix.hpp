@@ -24,57 +24,54 @@ namespace zich{
 		int _column;
 
 	public:
-		Matrix(std::vector<double>& matrix,int row,int column);
+		Matrix(std::vector<double>& matrix,int row,int column) noexcept(false);
 		~Matrix() = default;
 		Matrix() = default;
 
-		std::vector<double> get_matrix()const;
-		int get_colum() const;
-		void checkInput(const Matrix& matrix) const;
+		std::vector<double> get_matrix()const noexcept(true);
+		int get_colum() const noexcept(true);
 
-		static double sum(const Matrix& other);
-		static void add(Matrix& matrix,double scalar);
+		void checkInput(const Matrix& matrix) const noexcept(false);
+		static double sum(const Matrix& other) noexcept(true);
+		static void add(Matrix& matrix,double scalar) noexcept(true);
 
+        Matrix operator+(const Matrix& other) const noexcept(false);
+		Matrix operator+() noexcept(true);
+		Matrix operator+(double scalar)const noexcept(true);
+        Matrix& operator+=(Matrix& other) noexcept(false);
 
+        Matrix operator-( const Matrix& other) const noexcept(false);
+		Matrix operator-() noexcept(true);
+		Matrix operator-(double scalar)const noexcept(true);
+        Matrix& operator-=(const Matrix& other) noexcept(false);
 
-
-        Matrix operator+(const Matrix& other) const;
-		Matrix operator+();
-		Matrix operator+(double scalar)const;
-        Matrix& operator+=(Matrix& other);
-
-        Matrix operator-( const Matrix& other) const;
-		Matrix operator-();
-		Matrix operator-(double scalar)const;
-        Matrix& operator-=(const Matrix& other);
-
-	    bool operator<(const Matrix& other) const;
-        bool operator>(const Matrix& other) const;
+	    bool operator<(const Matrix& other) const noexcept(false);
+        bool operator>(const Matrix& other) const noexcept(false);
 
 		
-        bool operator<=(const Matrix& other) const;
-        bool operator>=(const Matrix& other) const;
+        bool operator<=(const Matrix& other) const noexcept(false);
+        bool operator>=(const Matrix& other) const noexcept(false); 
  
 
-		bool operator!=(const Matrix& other) const;
-        bool operator==(const Matrix& other) const;
+		bool operator!=(const Matrix& other) const noexcept(false);
+        bool operator==(const Matrix& other) const noexcept(false);
 
 
 
-        Matrix& operator++();
-        Matrix operator++(int);
+        Matrix& operator++() noexcept(true);
+        Matrix operator++(int) noexcept(true);
 
-		Matrix& operator--();
-        Matrix operator--(int);
+		Matrix& operator--()noexcept(true);
+        Matrix operator--(int)noexcept(true);
 
-		Matrix operator*(double scalar) const;
-		Matrix& operator*=(const double& scalar);
-		Matrix operator*(const Matrix& other) const;
-		Matrix& operator*=(const Matrix& other);
+		Matrix operator*(double scalar) const noexcept(true);
+		Matrix& operator*=(const double& scalar) noexcept(true);
+		Matrix operator*(const Matrix& other) const noexcept(false);
+		Matrix& operator*=(const Matrix& other) noexcept(false);
 
-		friend Matrix operator*(double scalar, const Matrix& matrix);
-		friend std::ostream& operator<<(std::ostream &out, const Matrix &matrix);
-        friend std::istream& operator>>(std::istream &in, Matrix &matrix);
+		friend Matrix operator*(double scalar, const Matrix& matrix) noexcept(true);
+		friend std::ostream& operator<<(std::ostream &out, const Matrix &matrix) noexcept(true);
+        friend std::istream& operator>>(std::istream &in, Matrix &matrix) noexcept(false);
 
 	}; 
 	

@@ -24,7 +24,7 @@ using namespace std;
  * @param column:
  * @return New matrix
  */
-	Matrix::Matrix(std::vector<double>& matrix,int row,int column):_matrix(matrix),_row(row),_column(column)
+	Matrix::Matrix(std::vector<double>& matrix,int row,int column) noexcept(false) :_matrix(matrix),_row(row),_column(column) 
 	{
 		if (row<0||column<0)
 		{
@@ -38,7 +38,7 @@ using namespace std;
 		
 		
 	}
-	void Matrix::add(Matrix& matrix,double scalar) 
+	void Matrix::add(Matrix& matrix,double scalar) noexcept(true) 
 	{
 		for (size_t i = 0; i < matrix._matrix.size(); i++)
 		{
@@ -52,7 +52,7 @@ using namespace std;
  * @param matrix: 
  * @return
  */
-	void Matrix::checkInput(const Matrix& matrix) const
+	void Matrix::checkInput(const Matrix& matrix) const noexcept(false)
 	{
 		if(!(this->_row==matrix._row)||!(this->_column== matrix._column))
 		{
@@ -66,11 +66,11 @@ using namespace std;
  * @brief
  * @return This vector<double>
  */
-	std::vector<double> Matrix::get_matrix() const
+	std::vector<double> Matrix::get_matrix() const noexcept(true)
 	{
 		return this->_matrix;
 	}
-	int Matrix::get_colum() const
+	int Matrix::get_colum() const noexcept(true)
 	{
 		return this->_column;
 	}
@@ -83,7 +83,7 @@ using namespace std;
  * @return
  */
 
-	Matrix Matrix::operator+(const Matrix& other) const
+	Matrix Matrix::operator+(const Matrix& other) const noexcept(false)
 	 {
 		checkInput( other);
 		Matrix mat{*this};
@@ -97,7 +97,7 @@ using namespace std;
 
 	
 
-	Matrix Matrix::operator+(double scalar)const
+	Matrix Matrix::operator+(double scalar)const noexcept(true)
 	{
 		Matrix copy=*this;
 		add(copy,scalar);
@@ -109,7 +109,7 @@ using namespace std;
  * @brief
  * @return
  */
-	Matrix Matrix::operator+() 
+	Matrix Matrix::operator+()  noexcept(true)
 	{
 	
 		Matrix mat{*this};
@@ -124,7 +124,7 @@ using namespace std;
  * @param other:
  * @return
  */
-    Matrix& Matrix::operator+=(Matrix& other)
+    Matrix& Matrix::operator+=(Matrix& other) noexcept(false)
 	{
 		*this=*this+other;
 		return *this;
@@ -137,7 +137,7 @@ using namespace std;
  * @param other:
  * @return
  */
-    Matrix Matrix::operator-(const Matrix& other) const
+    Matrix Matrix::operator-(const Matrix& other) const noexcept(false)
 	{
 		checkInput( other);
 		Matrix mat{*this};
@@ -149,7 +149,7 @@ using namespace std;
 
 	}
 
-	Matrix Matrix::operator-(double scalar)const
+	Matrix Matrix::operator-(double scalar)const noexcept(true)
 	{
 		Matrix copy=*this;
 		add(copy,-(scalar));
@@ -161,7 +161,7 @@ using namespace std;
  * @brief
  * @return
  */
-	Matrix Matrix::operator-() 
+	Matrix Matrix::operator-()  noexcept(true)
 	{
 		Matrix mat{*this};
 		for(uint i=0;i<mat._matrix.size();i++)
@@ -183,7 +183,7 @@ using namespace std;
  * @param other: 
  * @return
  */
-    Matrix& Matrix::operator-=(const Matrix& other)
+    Matrix& Matrix::operator-=(const Matrix& other) noexcept(false)
 	{
 		checkInput( other);
 		*this=*this-other;
@@ -197,7 +197,7 @@ using namespace std;
  * @return
  */
 
-	double Matrix::sum(const Matrix& other)
+	double Matrix::sum(const Matrix& other) noexcept(true)
 	{
 		double sum=0;
 		for (size_t i = 0; i < other._matrix.size(); i++)
@@ -213,7 +213,7 @@ using namespace std;
  * @param other:
  * @return false OR true
  */
-	bool Matrix::operator<(const Matrix& other) const
+	bool Matrix::operator<(const Matrix& other) const noexcept(false)
 	{
 		checkInput( other);
 		return sum(*this)<sum(other);
@@ -225,7 +225,7 @@ using namespace std;
  * @param other: 
  * @return false OR true
  */
-    bool Matrix::operator>(const Matrix& other) const
+    bool Matrix::operator>(const Matrix& other) const noexcept(false)
 	{
 		checkInput( other);
 		return sum(*this)>sum(other);
@@ -237,7 +237,7 @@ using namespace std;
  * @param other: 
  * @return false OR true
  */
-    bool Matrix::operator<=(const Matrix& other) const
+    bool Matrix::operator<=(const Matrix& other) const noexcept(false)
 	{
 		checkInput( other);
 		return sum(*this)<=sum(other);
@@ -249,7 +249,7 @@ using namespace std;
  * @param other:
  * @return false OR true
  */
-    bool Matrix::operator>=(const Matrix& other) const
+    bool Matrix::operator>=(const Matrix& other) const noexcept(false)
 	{
 		checkInput( other);
 		return sum(*this)>=sum(other);
@@ -261,7 +261,7 @@ using namespace std;
  * @param other: 
  * @return false OR true
  */
-	bool Matrix::operator!=(const Matrix& other) const
+	bool Matrix::operator!=(const Matrix& other) const noexcept(false)
 	{
 		return!(*this==other);
 
@@ -273,7 +273,7 @@ using namespace std;
  * @param other:
  * @return false OR true
  */
-    bool Matrix::operator==(const Matrix& other) const
+    bool Matrix::operator==(const Matrix& other) const noexcept(false)
 	{
 	   checkInput( other);
 		for(uint i=0;i<_matrix.size();i++)
@@ -294,7 +294,7 @@ using namespace std;
  * @brief
  * @return
  */
-    Matrix& Matrix::operator++()
+    Matrix& Matrix::operator++() noexcept(true)
 	{
 		int x=1;
 		add(*this,x);
@@ -308,7 +308,7 @@ using namespace std;
  * @param add:
  * @return
  */
-    Matrix Matrix::operator++(int)
+    Matrix Matrix::operator++(int) noexcept(true)
 	{
 
 		Matrix copy = *this;
@@ -323,7 +323,7 @@ using namespace std;
  * @brief
  * @return
  */
-	Matrix& Matrix::operator--()
+	Matrix& Matrix::operator--() noexcept(true)
 	{
 		int x=-1;
 		add(*this,x);
@@ -338,7 +338,7 @@ using namespace std;
  * @param add: 
  * @return
  */
-    Matrix Matrix::operator--(int)
+    Matrix Matrix::operator--(int) noexcept(true)
 	{
 		Matrix copy = *this;
 		int x=-1;
@@ -353,7 +353,7 @@ using namespace std;
  * @param scalar:
  * @return
  */ 
-	Matrix Matrix::operator*(double scalar) const
+	Matrix Matrix::operator*(double scalar) const noexcept(true)
 	{
 		Matrix m{*this};
 		for(uint i=0;i<m._matrix.size();i++)
@@ -370,7 +370,7 @@ using namespace std;
  * @param scalar:
  * @return
  */
-	Matrix& Matrix::operator*=(const double& scalar) 
+	Matrix& Matrix::operator*=(const double& scalar) noexcept(true)
 	{
 		*this=*this*scalar;
 		return *this;
@@ -383,7 +383,7 @@ using namespace std;
  * @param othe: 
  * @return
  */
-	Matrix Matrix::operator*(const Matrix& other) const
+	Matrix Matrix::operator*(const Matrix& other) const noexcept(false)
 	{
 		if(this->_column!=other._row)
 		{
@@ -422,7 +422,7 @@ using namespace std;
 
 	}
 
-	Matrix& Matrix::operator*=(const Matrix& other)
+	Matrix& Matrix::operator*=(const Matrix& other) noexcept(false)
 	{
 		*this=*this*other;
 		return *this;
@@ -436,7 +436,7 @@ using namespace std;
  * @param matrix:
  * @return
  */
-	 Matrix zich::operator*(double scalar, const Matrix& matrix)
+	 Matrix zich::operator*(double scalar, const Matrix& matrix) noexcept(true)
 	 {
 		 return matrix*scalar;
 		 
@@ -449,7 +449,7 @@ using namespace std;
  * @param matrix:
  * @return
  */
-	std::ostream& zich::operator<<(std::ostream& out, const Matrix& matrix)
+	std::ostream& zich::operator<<(std::ostream& out, const Matrix& matrix) noexcept(true)
 	{
 		int j=0;
 		if(matrix._matrix.empty())
@@ -486,7 +486,7 @@ using namespace std;
  * @param matrix:
  * @return
  */
-   std::istream& zich::operator>>(std::istream& in, Matrix& matrix)
+   std::istream& zich::operator>>(std::istream& in, Matrix& matrix) noexcept(false)
 	{
 		vector<double> mat;
 		int row=0;
