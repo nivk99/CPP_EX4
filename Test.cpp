@@ -290,7 +290,7 @@ TEST_CASE("Addition and subtraction")
 			Matrix a34=a3+a4;
 			os.str(string());
 			os<<a34;
-			CHECK(nospaces(os.str()) == nospaces(       "[6 6]\n"
+			CHECK(nospaces(os.str()) == nospaces(           "[6 6]\n"
 															"[5 10]"));
 
 			arr1 = {1, 2, 3, 1.5, 5, 6};//2*3
@@ -300,7 +300,7 @@ TEST_CASE("Addition and subtraction")
 			Matrix a56=a5+a6;
 			os.str(string());
 			os<<a56;
-			CHECK(nospaces(os.str()) == nospaces(          "[1 7 -1]\n"
+			CHECK(nospaces(os.str()) == nospaces(           "[1 7 -1]\n"
 															"[0 15 6]"));
 
 		}
@@ -334,14 +334,14 @@ TEST_CASE("Addition and subtraction")
 			os.str(string());
 			os<<a1;
 
-			CHECK(nospaces(os.str()) == nospaces(         "[0 0 0]\n"
+			CHECK(nospaces(os.str()) == nospaces(           "[0 0 0]\n"
 															"[0 0 0]\n"
 															"[0 0 0]"));
 			
 			os.str(string());
 			os<<a2;
 
-			CHECK(nospaces(os.str()) == nospaces(          "[-3 0 0]\n"
+			CHECK(nospaces(os.str()) == nospaces(           "[-3 0 0]\n"
 															"[0 -3 0]\n"
 															"[0 0 -3]"));
 
@@ -353,7 +353,7 @@ TEST_CASE("Addition and subtraction")
 			a3+=a4;
 			os.str(string());
 			os<<a3;
-			CHECK(nospaces(os.str()) == nospaces(          "[3 0 0]\n"
+			CHECK(nospaces(os.str()) == nospaces(           "[3 0 0]\n"
 															"[0 3 0]\n"
 															"[0 0 3]"));
 
@@ -473,7 +473,7 @@ TEST_CASE("Addition and subtraction")
 			a1-=a2;
 			os.str(string());
 			os<<a1;
-			CHECK(nospaces(os.str()) == nospaces(         "[-1 -20]\n"
+			CHECK(nospaces(os.str()) == nospaces(           "[-1 -20]\n"
 															"[-25 5]\n"
 															"[2 3]"));
 
