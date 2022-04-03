@@ -31,7 +31,7 @@ using namespace zich;
  * @param input
  * @return string
  */
-string nospaces(string input)
+string nospaces(string input) noexcept(true)
 {
 	std::erase(input, ' ');
 	std::erase(input, '\t');
