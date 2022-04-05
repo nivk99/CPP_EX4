@@ -17,11 +17,8 @@ using namespace std;
 #include "Matrix.hpp"
 using namespace zich;
 
-int main() 
-{
-  // Matrix a1;
-  // cin>>a1;
-  // cout<<a1<<endl;
+int main() {
+  
   std::vector<double> identity = {1, 0, 0, 0, 1, 0, 0, 0, 1};
   std::vector<double> arr = {3, 0, 0, 0, 3, 0, 0, 0, 3};
   Matrix a{identity, 3, 3};  // constructor taking a vector and a matrix size
@@ -47,12 +44,6 @@ int main()
             [0 6 0]
             [0 0 6]*/
 
-
   cout << "End of demo!" << endl;
-   Matrix c={arr,3,3};
-  cout<<c<<endl;
-  cout<<b<<endl;
-  c*=b;
-  cout<<c<<endl;
   return 0;
 }
