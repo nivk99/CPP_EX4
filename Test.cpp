@@ -52,33 +52,9 @@ TEST_CASE("Test 1: constructor"){
 	SUBCASE("Bad input constructor")
 	{
 		std::vector<double> vect = {3, 0, 0, 0, 3, 0, 0, 0, 3};//3*3
-		try
-		{
-			Matrix mat{vect, -3, 3};//The size of the rows is negative
-			CHECK_NOTHROW(runtime_error("Invalid input.\n Only matrices of the same size"));
-		}
-		catch(const std::exception& e)
-		{
-		}
-
-		try
-		{
-			Matrix mat{vect, 3, -3};//Column size is negative
-			CHECK_NOTHROW(runtime_error("Invalid input.\n Only matrices of the same size"));
-		}
-		catch(const std::exception& e)
-		{
-		}
-
-		try
-		{
-			Matrix mat{vect, 2, 3};//Not the same size
-			CHECK_NOTHROW(runtime_error("Invalid input.\n Only matrices of the same size"));
-		}
-		catch(const std::exception& e)
-		{
-		}
-
+		CHECK_THROWS(Matrix(vect, -3, 3));//The size of the rows is negative
+		CHECK_THROWS(Matrix(vect, 3, -3));
+        CHECK_THROWS(Matrix(vect, 2, 3));
 	}
 
 	SUBCASE("Good input constructor")
