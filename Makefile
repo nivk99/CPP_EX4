@@ -12,6 +12,9 @@ run: demo
 demo: Demo.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o demo
 
+main: Main.o $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o main
+
 test: TestCounter.o Test.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o test
 
@@ -23,4 +26,4 @@ tidy:
 
 
 clean:
-	rm -f *.o demo test
+	rm -f *.o demo test main

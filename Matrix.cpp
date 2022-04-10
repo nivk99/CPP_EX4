@@ -2,7 +2,7 @@
 
 /**
  * @file Matrix.cpp
- * @brief This file demonstrates tests for the Matrix class
+ * @brief This file describes all the implementations of the Matrix class
  * @date 2022-04-06
  * 
  * AUTHORS: Niv Kotek (nivk99@gmail.com)
